@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Register">
+    <meta name="author" content="Xuan-Hong,Liu">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊</title>
+    <link rel="Shortcut Icon" href="img/background/favicon.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="css/loading.css" />
+    <link rel="stylesheet" href="css/pagesetting.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pokemoninfo.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/subroutine.js"></script>
+    <link href="css/register.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" id="boundary">
+        <div class="row header">
+            <a href="index.html">
+                <div id="logo"></div>
+            </a>
+            <div class="title" onclick="jump2()" id="title2">寶可夢資料</div>
+            <div class="logIn">
+                <a href="#" onclick="goLogin()">登入</a> /
+                <a href="#" onclick="goRegister()">註冊</a>
+            </div>
+
+        </div><br>
+
+
+        <div class="signup-form">
+            <form>
+                <h2>註冊</h2>
+                <div class="form-group">
+                    <div class="col-xs-6 cName">
+                        <input type="text" class="form-control" name="cName" placeholder="姓名" required="required" id="cName" onblur="nameCheck()">
+                    </div>
+                </div>
+                <div class="form-group email">
+                    <input type="email" class="form-control" name="email" placeholder="E-mail" required="required" id="email" onblur="mailCheck()">
+                </div>
+                <div class="form-group pwd">
+                    <input type="password" class="form-control" name="password" placeholder="密碼(長度8~15位)" required="required" id="pwd" pattern=".{8,15}" onblur="pwdCheck()">
+                </div>
+                <div class="form-group cPwd">
+                    <input type="password" class="form-control" name="confirm_password" placeholder="確認密碼" required="required" id="cPwd" pattern=".{8,15}" onblur="pwdCheck()">
+                </div>
+            </form>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block" id="btnOK">建立您的帳戶</button>
+            </div>
+            <div class="text-center">已經擁有帳戶? <a href="login.html">登入</a></div>
+        </div>
+    </div>
+
+
+    <script>
+        var flag = false;
+        var flag2 = false;
+        var flag3 = false;
+        function pwdCheck() {
+            if ($("#pwd").val() != $("#cPwd").val()) {
+                $("#err").remove();
+                $(".cPwd").append('<span style="color:red;font-size:0.25rem;" id="err">*兩次輸入密碼不一致</span>');
+            } else {
+                if ($("#pwd").val().length < 8) {
+                    $("#err").remove();
+                    $(".cPwd").append('<span style="color:red;font-size:0.25rem;" id="err">*密碼長度過短</span>');
+                } else {
+                    $("#err").remove();
+                    flag = true;
+                }
+
+            }
+        }
+
+        function nameCheck() {
+            if (!$("#cName").val()) {
+                $(".cName").append('<span style="color:red;font-size:0.25rem;" id="eName">*必填</span>');
+                return;
+            } else {
+                $("#eName").remove();
+                flag2 = true;
+            }
+        }
+
+        function mailCheck() {
+            if (!$("#email").val()) {
+                $(".email").append('<span style="color:red;font-size:0.25rem;" id="eMail">*必填</span>');
+                return;
+            } else {
+                $("#eMail").remove();
+                flag3 = true;
+            }
+        }
+
+        $(document).on("click", "#btnOK", function () {
+            if (!flag || !flag2 || !flag3) {
+                pwdCheck();
+                nameCheck();
+                mailCheck();
+                return;
+            }
+
+
+            $.get("/odata/userInfoes", function (e) {
+                $("#eMail").remove();
+                var dataList = e.value;
+                for (var i = 0; i < e.value.length; i++) {
+                    if (dataList[i].email == $("#email").val()) {
+                        $(".email").append('<span style="color:red;font-size:0.25rem;" id="eMail">*信箱已註冊</span>');
+                        return;
+                    }
+                }
+
+                if (flag && flag2) {
+                    var newUser = {
+                        cName: $("#cName").val(),
+                        email: $("#email").val(),
+                        pwd: $("#pwd").val(),
+                    }
+
+                    $.ajax({
+                        type: "post",
+                        url: "/odata/userInfoes",
+                        contentType: "application/json",
+                        data: JSON.stringify(newUser)
+                    }).then(function () {
+                        $.get("/odata/userInfoes", function (e) {
+                            var list = e.value;
+                            document.location.href = "index.html";
+                            for (var i = 0; i < e.value.length; i++) {
+                                if (list[i].email == $("#email").val()) {
+                                    document.location.href = "index.html";
+                                    document.cookie = "login=true";
+                                    document.cookie = "uid=" + list[i].uid;
+                                    document.cookie = "cName=" + list[i].cName;
+                                    alert("加入會員成功!");
+                                    return;
+                                }
+                            }
+                        })
+                    })
+                };
+            })
+        })
+
+
+        //< !--Title Pokemon編號名稱在小螢幕時取消顯示-- >
+        var a = 2;
+
+        if (parseInt($(window).width()) > 700) {
+            $("#title2").before('<div class="title" onclick="jumpIndex()" id="title1">寶可夢圖鑑</div>')
+        }
+
+        $(window).resize(function () {
+            if (parseInt($(window).width()) < 700) {
+                $("#title1").remove();
+                a = 1;
+            } else if (a == 1) {
+                a = 2;
+                $("#title2").before('<div class="title" onclick="jumpIndex()" id="title1">寶可夢圖鑑</div>');
+            }
+        });
+                //< !--Title Pokemon編號名稱在小螢幕時取消顯示-- >
+    </script>
+
+</body>
+</html>                            

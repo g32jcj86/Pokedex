@@ -1,0 +1,394 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CDD8AC76-1A52-45D4-B239-E7AEBFD38B28}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pokedex</RootNamespace>
+    <AssemblyName>Pokedex</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.OData, Version=5.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.3.1\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\loading.css" />
+    <Content Include="css\login.css" />
+    <Content Include="css\pagesetting.css" />
+    <Content Include="css\register.css" />
+    <Content Include="Global.asax" />
+    <Content Include="index.html" />
+    <Content Include="img\001.png" />
+    <Content Include="img\002.png" />
+    <Content Include="img\003.png" />
+    <Content Include="img\004.png" />
+    <Content Include="img\005.png" />
+    <Content Include="img\006.png" />
+    <Content Include="img\007.png" />
+    <Content Include="img\008.png" />
+    <Content Include="img\009.png" />
+    <Content Include="img\010.png" />
+    <Content Include="img\011.png" />
+    <Content Include="img\012.png" />
+    <Content Include="img\013.png" />
+    <Content Include="img\014.png" />
+    <Content Include="img\015.png" />
+    <Content Include="img\016.png" />
+    <Content Include="img\017.png" />
+    <Content Include="img\018.png" />
+    <Content Include="img\019.png" />
+    <Content Include="img\020.png" />
+    <Content Include="img\021.png" />
+    <Content Include="img\022.png" />
+    <Content Include="img\023.png" />
+    <Content Include="img\024.png" />
+    <Content Include="img\025.png" />
+    <Content Include="img\026.png" />
+    <Content Include="img\027.png" />
+    <Content Include="img\028.png" />
+    <Content Include="img\029.png" />
+    <Content Include="img\030.png" />
+    <Content Include="img\031.png" />
+    <Content Include="img\032.png" />
+    <Content Include="img\033.png" />
+    <Content Include="img\034.png" />
+    <Content Include="img\035.png" />
+    <Content Include="img\036.png" />
+    <Content Include="img\037.png" />
+    <Content Include="img\038.png" />
+    <Content Include="img\039.png" />
+    <Content Include="img\040.png" />
+    <Content Include="img\041.png" />
+    <Content Include="img\042.png" />
+    <Content Include="img\043.png" />
+    <Content Include="img\044.png" />
+    <Content Include="img\045.png" />
+    <Content Include="img\046.png" />
+    <Content Include="img\047.png" />
+    <Content Include="img\048.png" />
+    <Content Include="img\049.png" />
+    <Content Include="img\050.png" />
+    <Content Include="img\051.png" />
+    <Content Include="img\052.png" />
+    <Content Include="img\053.png" />
+    <Content Include="img\054.png" />
+    <Content Include="img\055.png" />
+    <Content Include="img\056.png" />
+    <Content Include="img\057.png" />
+    <Content Include="img\058.png" />
+    <Content Include="img\059.png" />
+    <Content Include="img\060.png" />
+    <Content Include="img\061.png" />
+    <Content Include="img\062.png" />
+    <Content Include="img\063.png" />
+    <Content Include="img\064.png" />
+    <Content Include="img\065.png" />
+    <Content Include="img\066.png" />
+    <Content Include="img\067.png" />
+    <Content Include="img\068.png" />
+    <Content Include="img\069.png" />
+    <Content Include="img\070.png" />
+    <Content Include="img\071.png" />
+    <Content Include="img\072.png" />
+    <Content Include="img\073.png" />
+    <Content Include="img\074.png" />
+    <Content Include="img\075.png" />
+    <Content Include="img\076.png" />
+    <Content Include="img\077.png" />
+    <Content Include="img\078.png" />
+    <Content Include="img\079.png" />
+    <Content Include="img\080.png" />
+    <Content Include="img\081.png" />
+    <Content Include="img\082.png" />
+    <Content Include="img\083.png" />
+    <Content Include="img\084.png" />
+    <Content Include="img\085.png" />
+    <Content Include="img\086.png" />
+    <Content Include="img\087.png" />
+    <Content Include="img\088.png" />
+    <Content Include="img\089.png" />
+    <Content Include="img\090.png" />
+    <Content Include="img\091.png" />
+    <Content Include="img\092.png" />
+    <Content Include="img\093.png" />
+    <Content Include="img\094.png" />
+    <Content Include="img\095.png" />
+    <Content Include="img\096.png" />
+    <Content Include="img\097.png" />
+    <Content Include="img\098.png" />
+    <Content Include="img\099.png" />
+    <Content Include="img\100.png" />
+    <Content Include="img\101.png" />
+    <Content Include="img\102.png" />
+    <Content Include="img\103.png" />
+    <Content Include="img\104.png" />
+    <Content Include="img\105.png" />
+    <Content Include="img\106.png" />
+    <Content Include="img\107.png" />
+    <Content Include="img\108.png" />
+    <Content Include="img\109.png" />
+    <Content Include="img\110.png" />
+    <Content Include="img\111.png" />
+    <Content Include="img\112.png" />
+    <Content Include="img\113.png" />
+    <Content Include="img\114.png" />
+    <Content Include="img\115.png" />
+    <Content Include="img\116.png" />
+    <Content Include="img\117.png" />
+    <Content Include="img\118.png" />
+    <Content Include="img\119.png" />
+    <Content Include="img\120.png" />
+    <Content Include="img\121.png" />
+    <Content Include="img\122.png" />
+    <Content Include="img\123.png" />
+    <Content Include="img\124.png" />
+    <Content Include="img\125.png" />
+    <Content Include="img\126.png" />
+    <Content Include="img\127.png" />
+    <Content Include="img\128.png" />
+    <Content Include="img\129.png" />
+    <Content Include="img\130.png" />
+    <Content Include="img\131.png" />
+    <Content Include="img\132.png" />
+    <Content Include="img\133.png" />
+    <Content Include="img\134.png" />
+    <Content Include="img\135.png" />
+    <Content Include="img\136.png" />
+    <Content Include="img\137.png" />
+    <Content Include="img\138.png" />
+    <Content Include="img\139.png" />
+    <Content Include="img\140.png" />
+    <Content Include="img\141.png" />
+    <Content Include="img\142.png" />
+    <Content Include="img\143.png" />
+    <Content Include="img\144.png" />
+    <Content Include="img\145.png" />
+    <Content Include="img\146.png" />
+    <Content Include="img\147.png" />
+    <Content Include="img\148.png" />
+    <Content Include="img\149.png" />
+    <Content Include="img\150.png" />
+    <Content Include="img\151.png" />
+    <Content Include="img\background\arrows-left-round-icon.png" />
+    <Content Include="img\background\arrows-right-round-icon.png" />
+    <Content Include="img\background\background_A.jpg" />
+    <Content Include="img\background\background_B.jpg" />
+    <Content Include="img\background\ball-image.png" />
+    <Content Include="img\background\favicon.ico" />
+    <Content Include="img\background\og-image.png" />
+    <Content Include="img\background\search.png" />
+    <Content Include="js\jquery-3.3.1.js" />
+    <Content Include="js\jquery-3.3.1.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\pokemoninfo.js" />
+    <Content Include="js\subroutine.js" />
+    <Content Include="addPokeInfo.html" />
+    <Content Include="login.html" />
+    <Content Include="Models\PokedexModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PokedexModel.Context.cs</LastGenOutput>
+      <DependentUpon>PokedexModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\PokedexModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PokedexModel.edmx</DependentUpon>
+      <LastGenOutput>PokedexModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Paging.html" />
+    <Content Include="register.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\fileController.cs" />
+    <Compile Include="Controllers\loginRecordsController.cs" />
+    <Compile Include="Controllers\pokeInfoesController.cs" />
+    <Compile Include="Controllers\userInfoesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\loginRecord.cs">
+      <DependentUpon>PokedexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PokedexModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PokedexModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PokedexModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PokedexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PokedexModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PokedexModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pokeInfo.cs">
+      <DependentUpon>PokedexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pokeInfo_log.cs">
+      <DependentUpon>PokedexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userInfo.cs">
+      <DependentUpon>PokedexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\background\pokemon ball.pptx" />
+    <EntityDeploy Include="Models\PokedexModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PokedexModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PokedexModel.edmx.diagram">
+      <DependentUpon>PokedexModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="css\bootstrap.css.map" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>10174</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:9183/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

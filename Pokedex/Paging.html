@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>寶可夢資訊</title>
+    <link rel="Shortcut Icon" href="img/background/favicon.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="css/pagesetting.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/pokemoninfo.js"></script>
+    <script src="js/subroutine.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script>
+        if (document.cookie == "") {
+            jumpIndex();
+        }
+        var loginTemp;
+        if (document.cookie.length > 10) {
+            var start = document.cookie.indexOf("login=") + 6;
+            var end = document.cookie.indexOf(";", start);
+            loginTemp = document.cookie.substring(start, end);
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container" id="boundary">
+        <div class="row header">
+            <a href="index.html">
+                <div id="logo"></div>
+            </a>
+            <div class="title" onclick="jumpIndex()" id="title1">寶可夢圖鑑</div>
+            <div class="logIn" onclick="" id="title3">
+                <a href="#" onclick="goLogin()">登入</a> /
+                <a href="#" onclick="goRegister()">註冊</a>
+            </div>
+        </div><br>
+
+        <div class="row justify-content-xl-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-between">
+            <div class="col-xs-4" id="previous">
+                <div id="arrowLeft"></div>
+                <div id="imgPrevious"></div>
+            </div>
+            <div class="col-xs-4" id="next">
+                <div id="arrowRight"></div>
+                <div id="imgNext"></div>
+            </div>
+        </div><br>
+
+
+        <div style="margin-left:90%;background-color:white;width:42px;visibility:hidden;" id="editDiv"><span>[<a href="#" id="edit">編輯</a>]</span></div><br>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div id="imgP">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div id="desP">
+                    <h5 id="infoIn">圖鑑介紹</h5>
+                    <p id="pokemonDes"></p><br>
+                </div>
+                <div id="infoP">
+                    <div class="infoPC">
+                        <h5>身高</h5>
+                        <p class="infoPPC" id="infoAA"></p>
+                    </div>
+                    <div class="infoPC">
+                        <h5>分類</h5>
+                        <p class="infoPPC" id="infoBB"></p>
+                    </div>
+                    <div class="infoPC">
+                        <h5>體重</h5>
+                        <p class="infoPPC" id="infoCC"></p>
+                    </div>
+                    <div class="infoPC">
+                        <h5>性別</h5>
+                        <p class="infoPPC" id="infoDD"></p>
+                    </div>
+                    <div class="infoPC">
+                        <h5>特性</h5>
+                        <p class="infoPPC" id="infoEE"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div id="pokemonSS">
+                    <div id="ssTitle">種族值</div>
+                    <div class="infoStrip" id="HP">
+                        <div class="infoStrip" id="infoHP"></div>
+                    </div>
+                    <div class="infoStrip" id="AT">
+                        <div class="infoStrip" id="infoAT"></div>
+                    </div>
+                    <div class="infoStrip" id="DE">
+                        <div class="infoStrip" id="infoDE"></div>
+                    </div>
+                    <div class="infoStrip" id="SA">
+                        <div class="infoStrip" id="infoSA"></div>
+                    </div>
+                    <div class="infoStrip" id="SD">
+                        <div class="infoStrip" id="infoSD"></div>
+                    </div>
+                    <div class="infoStrip" id="SP">
+                        <div class="infoStrip" id="infoSP"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div id="typeWeakness">
+                    <div id="pokemonType">
+                        <h5 class="infoOfTypeTitle">屬性</h5>
+                    </div>
+                    <div id="pokemonWeakness" class=" weakness">
+                        <h5 class="infoOfTypeTitle">弱點</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        if (loginTemp) {
+            var start = document.cookie.indexOf("cName=") + 6;
+            var end = document.cookie.indexOf(";", start);
+            if (end == -1)
+                end = document.cookie.length;
+            $(".logIn").html(`<span>歡迎回來, ${document.cookie.substring(start, end)} [<a href="" onclick="logout()">登出</a>]</span>`);
+            $("#editDiv").css("visibility", "visible");
+        }
+    </script>
+
+    <!--上下一隻pokemon按鈕動畫-->
+    <script>
+        $("#previous").mouseenter(function () {
+            $("#arrowLeft").addClass("animated infinite fadeOutLeft");
+        })
+        $("#previous").mouseleave(function () {
+            $("#arrowLeft").removeClass("animated infinite fadeOutLeft");
+        })
+        $("#next").mouseenter(function () {
+            $("#arrowRight").addClass("animated infinite fadeOutRight");
+        })
+        $("#next").mouseleave(function () {
+            $("#arrowRight").removeClass("animated infinite fadeOutRight");
+        })
+    </script>
+    <!--上下一隻pokemon按鈕動畫-->
+    <!--載入pokemon資訊-->
+    <script>
+        var dataList;
+        var count;
+        var x, y, z;
+        $.get("/odata/pokeInfoes", function (e) {
+            dataList = e.value;
+            count = e.value.length;
+            var start = document.cookie.indexOf("Number=")+7;
+            var end = start + 3;
+            var cookieX = parseInt(document.cookie.substring(start, end));
+            for (var i = 0; i < count; i++) {
+                if (cookieX == parseInt(dataList[i].num)) {
+                    x = i;
+                    continue;
+                }
+            }
+
+            if (x == 0) {
+                y = count - 1;
+            } else {
+                y = x - 1;
+            }
+            if (x == count - 1) {
+                z = 0;
+            } else {
+                z = x + 1;
+            }
+
+            //上下頁寶可夢圖片
+            $("#imgPrevious").css("background-image", "url(img/" + dataList[y].num + ".png)");
+            $("#imgNext").css("background-image", "url(img/" + dataList[z].num + ".png)");
+            //上下頁寶可夢圖片
+            //當前pokemon圖片
+            $("#imgP").append('<img src="img/' + dataList[x].num + '.png" alt="" width="100%">');
+            //當前pokemon圖片
+            //圖鑑介紹
+            $("#pokemonDes").html(dataList[x].describe);
+            //圖鑑介紹
+            //特徵
+            $("#infoAA").html(dataList[x].h + " m");
+            $("#infoBB").html(dataList[x].pokeGroup);
+            $("#infoCC").html(dataList[x].w + " kg");
+            $("#infoDD").html(dataList[x].gender);
+            if (dataList[x].abilityB == null) {
+                var temp = dataList[x].abilityA;
+            } else {
+                var temp = dataList[x].abilityA + " / " + dataList[x].abilityB;
+            }
+            $("#infoEE").html(temp);
+            //特徵
+            //種族值
+            $("#infoHP").html("生命:&#9;" + dataList[x].hp);
+            $("#infoHP").css("width", parseInt(dataList[x].hp) / 2.5 + "%");
+            $("#infoAT").html("攻擊:&#9;" + dataList[x].attack);
+            $("#infoAT").css("width", parseInt(dataList[x].attack) / 2.5 + "%");
+            $("#infoDE").html("防禦:&#9;" + dataList[x].defens);
+            $("#infoDE").css("width", parseInt(dataList[x].defens) / 2.5 + "%");
+            $("#infoSA").html("特攻:&#9;" + dataList[x].sAttack);
+            $("#infoSA").css("width", parseInt(dataList[x].sAttack) / 2.5 + "%");
+            $("#infoSD").html("特防:&#9;" + dataList[x].sDefencs);
+            $("#infoSD").css("width", parseInt(dataList[x].sDefencs) / 2.5 + "%");
+            $("#infoSP").html("速度:&#9;" + dataList[x].speed);
+            $("#infoSP").css("width", parseInt(dataList[x].speed) / 2.5 + "%");
+            //種族值
+            //屬性
+            $("#pokemonType").append(`<div class="typeOf ${pokemonType($.trim(dataList[x].typeA))}" id="typeA">${dataList[x].typeA}</div>`);
+            if (dataList[x].typeB != null)
+                $("#pokemonType").append(`<div class="typeOf ${pokemonType($.trim(dataList[x].typeB))}" id="typeA">${dataList[x].typeB}</div>`);
+            //弱點
+            for (var i = 0; i < 18; i++) {
+                weakness($.trim(dataList[x].typeA), $.trim(dataList[x].typeB), i);
+            }
+            //弱點
+            //上一支寶可夢
+            $(document).on("click", "#previous", function () {
+                document.cookie = "Number=" + dataList[y].num;
+                document.location.href = `Paging.html?num=${dataList[y].num}`;
+            })
+            //上一支寶可夢
+            //下一支寶可夢
+            $(document).on("click", "#next", function () {
+                document.cookie = "Number=" + dataList[z].num;
+                document.location.href = "Paging.html?num=" + dataList[z].num;
+            })
+            //下一支寶可夢
+            //前往編輯該寶可夢資訊
+            $(document).on("click", "#edit", function () {
+                document.location.href = "addPokeInfo.html?id=" + x;
+            })
+            //前往編輯該寶可夢資訊
+
+
+            //< !--Title Pokemon編號名稱在小螢幕時取消顯示-- >
+            var a = 2;
+
+            if (parseInt($(window).width()) > 700) {
+                $("#next").before('<div class="col-xs-4 '
+                    + pokemonType($.trim(dataList[x].typeA)) + '" id="numNameP">#'
+                    + dataList[x].num + " " + dataList[x].cName + '</div>')
+                $("#title1").after(`<div class="title" onclick="jumpP(${dataList[x].num})" id="title2">寶可夢資料</div>`)
+            }
+
+            $(window).resize(function () {
+                if (parseInt($(window).width()) < 700) {
+                    $("#numNameP").remove();
+                    $("#title2").remove();
+                    a = 1;
+                } else if (a == 1) {
+                    a = 2;
+                    $("#next").before('<div class="col-xs-4 '
+                        + pokemonType($.trim(dataList[x].typeA)) + '" id="numNameP">#'
+                        + dataList[x].num + " " + dataList[x].cName + '</div>')
+                    $("#title1").after(`<div class="title" onclick="jumpP(${dataList[x].num})" id="title2">寶可夢資料</div>`)
+                }
+            });
+            //<!--Title Pokemon編號名稱在小螢幕時取消顯示-->
+        })
+
+
+    </script>
+    <!--載入pokemon資訊-->
+    <!--Bootstrap套用資料   -->
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--Bootstrap套用資料   -->
+</body>
+</html>

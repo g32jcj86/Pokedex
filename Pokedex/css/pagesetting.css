@@ -1,0 +1,465 @@
+#searchBtn {
+    height: 40px;
+    width: 100px;
+    border-radius: 0px 20px 20px 0px;
+    background-color: white;
+    margin-right: 50px;
+}
+
+#searchInput {
+    height: 40px;
+    border-radius: 20px 0px 0px 20px;
+    margin-left: 50px;
+    flex: 1;
+    font-size: 25px;
+    padding-left: 15px;
+    min-width: 100px;
+}
+
+.header {
+    height: 60px;
+    position: relative;
+}
+
+
+#logo {
+    width: 200px;
+    height: 60px;
+    background-image: url(../img/background/og-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.title {
+    flex: auto;
+    text-align: center;
+    height: 60px;
+    background-color: white;
+    padding-top: 1rem;
+    font-family: Microsoft JhengHei;
+    font-weight: bolder;
+}
+
+.logIn {
+    flex: auto;
+    text-align: center;
+    height: 60px;
+    background-color: white;
+    padding-top: 1rem;
+    font-family: Microsoft JhengHei;
+    font-weight: bolder;
+}
+
+.title:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.infoImg {
+    border: solid 2px lightblue;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    font-family: SimHei;
+}
+
+
+
+#numName {
+    font-weight: bold;
+    color: white;
+    margin-top: 2rem;
+}
+
+.typeOf {
+    display: inline-block;
+    border-radius: 12.5px;
+    width: 70px;
+    height: 25px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.bgColorNormal {
+    background-color: #888888;
+    color: white;
+}
+
+.bgColorWater {
+    background-color: #00BBFF;
+    color: white;
+}
+
+.bgColorFire {
+    background-color: #FF5511;
+    color: white;
+}
+
+.bgColorIce {
+    background-color: #00FFFF;
+    color: white;
+}
+
+.bgColorGround {
+    background-color: #DDAA00;
+    color: white;
+}
+
+.bgColorFairy {
+    background-color: #FF00FF;
+    color: white;
+}
+
+.bgColorStone {
+    background-color: #886600;
+    color: white;
+}
+
+.bgColorGhost {
+    background-color: #550088;
+    color: white;
+}
+
+.bgColorPoison {
+    background-color: #9900FF;
+    color: white;
+}
+
+.bgColorFly {
+    background-color: #0066FF;
+    color: white;
+}
+
+.bgColorFight {
+    background-color: #800000;
+    color: white;
+}
+
+.bgColorGrass {
+    background-color: #00AA00;
+    color: white;
+}
+
+.bgColorBug {
+    background-color: #227700;
+    color: white;
+}
+
+.bgColorEle {
+    background-color: #EEEE00;
+    color: white;
+}
+
+.bgColorSuperPower {
+    background-color: #FFB3FF;
+    color: white;
+}
+
+.bgColorDargon {
+    background-color: #003377;
+    color: white;
+}
+
+.bgColorSteel {
+    background-color: #DDDDDD;
+    color: white;
+}
+
+.bgColorDark {
+    background-color: #444444;
+    color: white;
+}
+
+.bgColorNone {
+    /*    background-color: white;*/
+    color: white;
+}
+
+body {
+    background-image: url(../img/background/background_B.jpg);
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+#boundary {
+    max-width: 1440px;
+}
+
+.ci {
+    background-image: url(../img/background/background_A.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
+    border-radius: 50%;
+    border: solid 3px;
+    width: 100%;
+    position: absolute;
+}
+
+    .ci:before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+    }
+
+.img {
+    position: absolute;
+}
+
+.index {
+    position: relative;
+}
+
+.bgBall {
+    background-image: url(../img/background/background_A.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    padding-top: 96.3%;
+    border: solid 5px black;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: -15px;
+    margin-top: 5px;
+    z-index: -1;
+}
+
+#searchMsg {
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+#ballA {
+    display: inline-block;
+    margin-right: 1rem;
+    /*    margin-top: -1rem;*/
+}
+
+#ballB {
+    display: inline-block;
+    margin-left: 1rem;
+    /*    margin-top: -1rem;*/
+}
+
+#previous {
+    height: 80px;
+    background-color: white;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    animation-duration: 2s;
+}
+
+#next {
+    height: 80px;
+    background-color: white;
+    border-radius: 20px 0 0 20px;
+    cursor: pointer;
+    animation-duration: 2s;
+}
+
+#arrowLeft {
+    background-image: url(../img/background/arrows-left-round-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 70px;
+    height: 87.5%;
+    margin-top: 5px;
+    float: left;
+}
+
+#arrowRight {
+    background-image: url(../img/background/arrows-right-round-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 70px;
+    height: 87.5%;
+    float: right;
+    margin-top: 5px;
+}
+
+#imgPrevious {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    width: 70px;
+    height: 87.5%;
+    margin-left: 1rem;
+    margin-top: 5px
+}
+
+#imgNext {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    float: right;
+    width: 70px;
+    height: 87.5%;
+    margin-right: 1rem;
+    margin-top: 5px
+}
+
+#numNameP {
+    font-size: 3rem;
+    font-family: Microsoft JhengHei;
+    font-weight: bolder;
+    border-radius: 1.5rem;
+}
+
+#imgP {
+    border: solid 5px lightblue;
+    border-radius: 10%;
+    background-color: white;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#desP {
+    background-color: white;
+    height: 30%;
+    border: solid 5px lightblue;
+    border-radius: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+
+#infoP {
+    background-color: white;
+    height: 60%;
+    border: solid 5px lightblue;
+    border-radius: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+
+.infoPC {
+    width: 45%;
+    display: inline-block;
+    height: 33%;
+    padding-left: 1rem;
+}
+
+.infoPPC {
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
+#pokemonDes {
+    padding-left: 10px;
+}
+
+#pokemonSS {
+    background-color: white;
+    border: solid 5px lightblue;
+    border-radius: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 4%;
+}
+
+#ssTitle {
+    text-align: center;
+}
+
+#HP {
+    background-color: #66FF66;
+}
+
+#AT {
+    background-color: #FFBB66;
+}
+
+#DE {
+    background-color: #FF8888;
+}
+
+#SA {
+    background-color: #66FFFF;
+}
+
+#SD {
+    background-color: #FFFFBB;
+}
+
+#SP {
+    background-color: #FF77FF;
+}
+
+#infoHP {
+    background-color: #00DD00;
+    padding-top: 5px;
+    padding-left: 10px;
+    min-width: 20%;
+}
+
+#infoAT {
+    background-color: #EE7700;
+    padding-top: 5px;
+    padding-left: 10px;
+    min-width: 20%;
+}
+
+#infoDE {
+    background-color: #CC0000;
+    padding-top: 5px;
+    padding-left: 10px;
+    min-width: 20%;
+}
+
+#infoSA {
+    background-color: #00DDDD;
+    padding-top: 5px;
+    padding-left: 10px;
+    min-width: 20%;
+}
+
+
+#infoSD {
+    background-color: #EEEE00;
+    padding-top: 5px;
+    padding-left: 10px;
+    min-width: 20%;
+}
+
+#infoSP {
+    background-color: #CC00CC;
+    padding-top: 5px;
+    padding-left: 10px;
+    min-width: 20%;
+}
+
+#infoIn {
+    padding-left: 10px;
+}
+
+.infoStrip {
+    height: 2rem;
+}
+
+#typeWeakness {
+    max-width: 500px;
+    border: solid 5px lightblue;
+    border-radius: 10px;
+    height: 14rem;
+    margin: 0 auto;
+    margin-top: 4%;
+    background-color: white;
+}
+
+.infoOfTypeTitle {
+    padding-left: 10px;
+}

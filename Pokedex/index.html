@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="PokemonIndex">
+    <meta name="author" content="Xuan-Hong,Liu">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寶可夢圖鑑</title>
+    <link rel="Shortcut Icon" href="img/background/favicon.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="css/loading.css" />
+    <link rel="stylesheet" href="css/pagesetting.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pokemoninfo.js"></script>
+    <script src="js/subroutine.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+        var loginTemp;
+        if (document.cookie.length > 10) {
+            var start = document.cookie.indexOf("login=") + 6;
+            var end = document.cookie.indexOf(";", start);
+            loginTemp = document.cookie.substring(start, end);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container" id="boundary">
+        <div class="row header">
+            <a href="index.html">
+                <div id="logo"></div>
+            </a>
+            <div class="title" onclick="jump2()" id="title2">寶可夢資料</div>
+            <div class="logIn" onclick="">
+                <a href="#" onclick="goLogin()">登入</a> /
+                <a href="#" onclick="goRegister()">註冊</a>
+            </div>
+
+        </div><br>
+
+        <div class="row" id="search">
+            <input type="text" id="searchInput" class="search" onkeydown="keyCode(event)">
+            <button id="searchBtn" class="search" onclick="search()">
+                <img src="img/background/search.png" alt="" height="30">
+            </button>
+        </div><br>
+        <div class="row index">
+
+        </div>
+    </div>
+
+    <script>
+        if (loginTemp) {
+            var start = document.cookie.indexOf("cName=") + 6;
+            var end = document.cookie.indexOf(";", start);
+            if (end == -1)
+                end = document.cookie.length;
+            $(".logIn").html(`<span>歡迎回來, ${document.cookie.substring(start,end)} [<a href="" onclick="logout()">登出</a>]</span>`);
+            $(".index").append('<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 infoImg" onclick=""><div><a href="addPokeInfo.html"><img src="img/background/add.png" alt="" style="margin-top:30%;width:98%;border-radius: 50%;" class="addPokemon" /></a></div></div>')
+        }
+
+        //< !----從資料庫取得資料後加入寶可夢清單-->
+        var timer = 0;
+        var timerMax = 18;
+        var count = 0;
+        $.get("/odata/pokeInfoes", function (e) {
+            dataList = e.value;
+            count = e.value.length;
+            addPokemonInfo();
+        })
+
+
+        function addPokemonInfo() {
+            for (timer; timer < timerMax; timer++) {
+                $(".index").append(`<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 infoImg" onclick="jump(this)"
+                                           id="${ dataList[timer].num}"><div class="bgBall" id="bg${dataList[timer].num}"></div>
+                                           <br><img src="img/${dataList[timer].num}.png" alt="" style="width: 100%"><p id =
+                                           "numName" >${dataList[timer].num}  ${dataList[timer].cName}</p> <div class = "typeOf
+                                           ${pokemonType($.trim(dataList[timer].typeA))}">${dataList[timer].typeA}</div></div> `);
+
+                if (dataList[timer].typeB != null)
+                    $(`#${dataList[timer].num}`).append(`<div class="typeOf ${pokemonType($.trim(dataList[timer].typeB))}">${dataList[timer].typeB}</div>`);
+            }
+            timerMax += 18;
+            if (timerMax > count)
+                timerMax = parseInt(count);
+        }
+        //<!----從資料庫取得資料後加入寶可夢清單-->
+        //自動載入之後資訊
+        $(function () {
+            $(window).scroll(function () {
+                var last = $("body").height() - $(window).height() - 1000;
+                if ($(window).scrollTop() >= last && timer != 809) {
+                    addPokemonInfo();
+                }
+            });
+        });
+        //自動載入之後資訊
+        //< !--Title Pokemon編號名稱在小螢幕時取消顯示-- >
+        var a = 2;
+
+        if (parseInt($(window).width()) > 700) {
+            $("#title2").before('<div class="title" onclick="jumpIndex()" id="title1">寶可夢圖鑑</div>')
+        }
+
+        $(window).resize(function () {
+            if (parseInt($(window).width()) < 700) {
+                $("#title1").remove();
+                a = 1;
+            } else if (a == 1) {
+                a = 2;
+                $("#title2").before('<div class="title" onclick="jumpIndex()" id="title1">寶可夢圖鑑</div>');
+            }
+        });
+        //<!--Title Pokemon編號名稱在小螢幕時取消顯示-- >
+        //< !--背景寶貝球旋轉-->
+        var ro = 0;
+        var flag;
+        var x = "";
+
+        $(document).on('mouseenter', '.infoImg', function () {
+
+            x = $(this).attr("id");
+            x = "#bg" + x;
+            flag = setInterval("rotate()", 50);
+
+        });
+
+        function rotate() {
+            ro += 5;
+            $(x).css("transform", "rotateZ(" + ro + "deg)")
+        }
+
+        $(document).on('mouseleave', '.infoImg', function () {
+            clearInterval(flag);
+            ro = 0;
+            $(x).css("transform", "rotateZ(" + ro + "deg)")
+            x = "";
+
+        });
+        //<!--背景寶貝球旋轉-->
+        //< !--根據輸入字串判斷符合的編號或名稱來決定顯示哪些資料  -->
+        function search() {
+            alert(flag2);
+            var info = "";
+            var x = 0;
+            info = document.getElementById("searchInput").value;
+            $(".infoImg").remove();
+            $("#searchMsg").remove();
+            for (var i = 0; i < count; i++) {
+                var j = $.trim(dataList[i].num).match(info);
+                var k = $.trim(dataList[i].cName).match(info);
+                if (j != null || k != null) {
+                    $(".index").append(`<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 infoImg" onclick="jump(this)"
+                                               id="${ dataList[i].num}"><div class="bgBall" id="bg${dataList[i].num}"></div>
+                                               <br><img src="img/${dataList[i].num}.png" alt="" style="width: 100%"><p id =
+                                               "numName" >${dataList[i].num}  ${dataList[i].cName}</p> <div class = "typeOf
+                                               ${pokemonType($.trim(dataList[i].typeA))}">${dataList[i].typeA}</div></div> `);
+
+                    if (dataList[i].typeB != null)
+                        $(`#${dataList[i].num}`).append(`<div class="typeOf ${pokemonType($.trim(dataList[i].typeB))}">${dataList[i].typeB}</div>`);
+
+                } else {
+                    x++;
+                }
+
+                if (x == count) {
+                    $(".index").append('<p id="searchMsg">沒有找到符合的寶可夢。<br>用別的條件重新搜尋吧!</p>');
+                }
+                if (dataList[i].typeB == null) {
+                    $("." + pokemonType($.trim(dataList[i].typeB))).css("visibility", "hidden");
+                }
+            }
+        }
+        //<!--根據輸入字串判斷符合的編號或名稱來決定顯示哪些資料  -->
+        //< !--加入按鈕效果-->
+        $(".addPokemon").mouseenter(function () {
+            $(".addPokemon").css("width", "100%");
+        })
+
+        $(".addPokemon").mouseleave(function () {
+            $(".addPokemon").css("width", "98%");
+        })
+                //<!--加入按鈕效果-->
+    </script>
+
+    <!--Bootstrap套用資料   -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--Bootstrap套用資料   -->
+
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PokedexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="loginRecord">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uid" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="loginTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="pokeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="cName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="jName" Type="nvarchar" MaxLength="40" />
+          <Property Name="eName" Type="varchar" MaxLength="40" />
+          <Property Name="typeA" Type="nvarchar" MaxLength="20" />
+          <Property Name="typeB" Type="nvarchar" MaxLength="20" />
+          <Property Name="pokeGroup" Type="nvarchar" MaxLength="40" />
+          <Property Name="abilityA" Type="nvarchar" MaxLength="40" />
+          <Property Name="abilityB" Type="nvarchar" MaxLength="40" />
+          <Property Name="hideAbility" Type="nvarchar" MaxLength="40" />
+          <Property Name="h" Type="varchar" MaxLength="10" />
+          <Property Name="w" Type="varchar" MaxLength="10" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="hp" Type="varchar" MaxLength="10" />
+          <Property Name="attack" Type="varchar" MaxLength="10" />
+          <Property Name="defens" Type="varchar" MaxLength="10" />
+          <Property Name="sAttack" Type="varchar" MaxLength="10" />
+          <Property Name="sDefencs" Type="varchar" MaxLength="10" />
+          <Property Name="speed" Type="varchar" MaxLength="10" />
+          <Property Name="describe" Type="nvarchar" MaxLength="400" />
+          <Property Name="creator" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="pokeInfo_log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num" Type="varchar" MaxLength="5" />
+          <Property Name="body" Type="nvarchar" MaxLength="500" />
+          <Property Name="time" Type="datetime" />
+          <Property Name="editor" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="userInfo">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="pwd" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PokedexModelStoreContainer">
+          <EntitySet Name="loginRecord" EntityType="Self.loginRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pokeInfo" EntityType="Self.pokeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pokeInfo_log" EntityType="Self.pokeInfo_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userInfo" EntityType="Self.userInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PokedexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="pokeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="eName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="typeA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="typeB" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pokeGroup" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="abilityA" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="abilityB" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="hideAbility" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="h" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="w" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="attack" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="defens" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sAttack" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sDefencs" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="speed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="describe" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pokeInfo_log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="body" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="DateTime" Precision="3" />
+          <Property Name="editor" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="PokedexEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="pokeInfoes" EntityType="Self.pokeInfo" />
+          <EntitySet Name="pokeInfo_log" EntityType="Self.pokeInfo_log" />
+          <EntitySet Name="userInfoes" EntityType="PokedexModel.userInfo" />
+          <EntitySet Name="loginRecords" EntityType="PokedexModel.loginRecord" />
+        </EntityContainer>
+        <EntityType Name="userInfo">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="pwd" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="loginRecord">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uid" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="loginTime" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PokedexModelStoreContainer" CdmEntityContainer="PokedexEntities">
+          <EntitySetMapping Name="pokeInfoes">
+            <EntityTypeMapping TypeName="PokedexModel.pokeInfo">
+              <MappingFragment StoreEntitySet="pokeInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="jName" ColumnName="jName" />
+                <ScalarProperty Name="eName" ColumnName="eName" />
+                <ScalarProperty Name="typeA" ColumnName="typeA" />
+                <ScalarProperty Name="typeB" ColumnName="typeB" />
+                <ScalarProperty Name="pokeGroup" ColumnName="pokeGroup" />
+                <ScalarProperty Name="abilityA" ColumnName="abilityA" />
+                <ScalarProperty Name="abilityB" ColumnName="abilityB" />
+                <ScalarProperty Name="hideAbility" ColumnName="hideAbility" />
+                <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="w" ColumnName="w" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="hp" ColumnName="hp" />
+                <ScalarProperty Name="attack" ColumnName="attack" />
+                <ScalarProperty Name="defens" ColumnName="defens" />
+                <ScalarProperty Name="sAttack" ColumnName="sAttack" />
+                <ScalarProperty Name="sDefencs" ColumnName="sDefencs" />
+                <ScalarProperty Name="speed" ColumnName="speed" />
+                <ScalarProperty Name="describe" ColumnName="describe" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pokeInfo_log">
+            <EntityTypeMapping TypeName="PokedexModel.pokeInfo_log">
+              <MappingFragment StoreEntitySet="pokeInfo_log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="body" ColumnName="body" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="editor" ColumnName="editor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userInfoes">
+            <EntityTypeMapping TypeName="PokedexModel.userInfo">
+              <MappingFragment StoreEntitySet="userInfo">
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loginRecords">
+            <EntityTypeMapping TypeName="PokedexModel.loginRecord">
+              <MappingFragment StoreEntitySet="loginRecord">
+                <ScalarProperty Name="loginTime" ColumnName="loginTime" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
